@@ -6,7 +6,7 @@ if "login" not in st.session_state:
     st.session_state.login = False
 
 if st.session_state.login == False:
-    st.page_link(label = "please login before the acion", page = "DASHBOARD.py" )
+    st.page_link(label = "please login before the acion", page = "app.py" )
 
 
 elif (st.session_state.login == True and st.session_state.role == "admin"):

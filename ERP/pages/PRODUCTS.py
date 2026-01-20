@@ -3,7 +3,7 @@ if "login" not in st.session_state:
     st.session_state.login = False
 
 if st.session_state.login == False:
-    st.page_link(label = "please login before the acion", page = "DASHBOARD.py" )
+    st.page_link(label = "please login before the acion", page = "app.py" )
 
 
 elif st.session_state.login == True:
@@ -38,4 +38,5 @@ elif st.session_state.login == True:
 if st.session_state.login == True:
     if st.sidebar.button("LOG-OUT"):
         st.session_state.login = False
+        st.rerun()
 
