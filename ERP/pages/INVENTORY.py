@@ -4,11 +4,14 @@ import pandas as pd
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-load_dotenv()
-GROQ_API_KEY = (st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY"))
-if not GROQ_API_KEY:
-    raise RuntimeError("GROQ_API_KEY is not configured")
-client = Groq(api_key=GROQ_API_KEY)
+from config import client
+# from config import GROQ_API_KEY
+# client = Groq(api_key=GROQ_API_KEY)
+# load_dotenv()
+# GROQ_API_KEY = (st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY"))
+# client = Groq(api_key=GROQ_API_KEY)
+# if not GROQ_API_KEY:
+#     raise RuntimeError("GROQ_API_KEY is not configured")
 
 # st.write("API KEY LOADED:", bool(os.getenv("GROQ_API_KEY")))
 
