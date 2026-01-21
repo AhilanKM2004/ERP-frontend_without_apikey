@@ -3,7 +3,6 @@ from groq import Groq
 import pandas as pd
 import json
 from dotenv import load_dotenv
-import os
 from config import client
 # from config import GROQ_API_KEY
 # client = Groq(api_key=GROQ_API_KEY)
@@ -29,8 +28,6 @@ elif (st.session_state.login == True and st.session_state.role == "admin"):
         st.write(csv)
     st.subheader("Last week sales performance")
     c1,c2=st.columns(2)
-    
-    client = Groq(api_key=GROQ_API_KEY)
     system_prompt=f"""now you have to analyse the last week performance of the given csv file , provide a well detailed report within 100 words thats enough but make it point by point, csv file = {csv}"""
     response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
@@ -73,8 +70,7 @@ elif (st.session_state.login == True and st.session_state.role == "common"):
     bu = st.button("search")
 
     if bu:
-        st.write("i have removed api key - since someone told me to remove all api key before uploading your project into github")
-        client = Groq(api_key=GROQ_API_KEY)
+        # st.write("i have removed api key - since someone told me to remove all api key before uploading your project into github")
         system_prompt=f"""user will give you the product name as {search} ,don't expose any sensitive details because your representing the data to user point of view that must only have to know about the simple basic deatils of the product and you have to do search in our csv file {doc} , and mention do have the product or not , if we have that product then say , yes our company do have this products and establish as much as possible about the product and service ..incase if we don't have the product then say we will soon add this product in our service and provide certaine details about that detail , maximum 20 lines and give the details in bullet point order"""
         response = client.chat.completions.create(
                 model="llama3-8b-8192",
