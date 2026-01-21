@@ -2,8 +2,6 @@ import streamlit as st
 from groq import Groq
 import pandas as pd
 from pathlib import Path
-from dotenv import load_dotenv
-import os
 from config import client
 # from config import GROQ_API_KEY
 # client = Groq(api_key=GROQ_API_KEY)
