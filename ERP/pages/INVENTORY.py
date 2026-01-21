@@ -2,6 +2,14 @@ import streamlit as st
 from groq import Groq
 import pandas as pd
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+load_dotenv()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+client = Groq(api_key=GROQ_API_KEY)
+
+# st.write("API KEY LOADED:", bool(os.getenv("GROQ_API_KEY")))
+
 
 
 if "login" not in st.session_state:
@@ -45,8 +53,6 @@ elif (st.session_state.login == True and st.session_state.role == "admin"):
                     y=numeric_cols[1]
                 )
         st.header("AI report")
-        st.write("i have removed api key - since someone told me to remove all api key before uploading your project into github")
-        client = Groq(api_key="")
         system_prompt=f"""we will give you an csv file and you have to do analys over the file and make small report about the subjected file , declare the current state , postive , negative all important points , remember it's need not be a bigger report but important point , just for the clarification and finally once again make it very  shorter because longer version will be displayed after this portion so make don't make it over 25 lines, and the csv file is = {st.session_state.readed}"""
         response = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
@@ -78,4 +84,5 @@ elif (st.session_state.login == True and st.session_state.role == "common"):
 if st.session_state.login == True:
     if st.sidebar.button("LOG-OUT"):
         st.session_state.login = False
+        st.rerun()
 
